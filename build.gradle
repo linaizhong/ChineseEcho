@@ -1,0 +1,22 @@
+// Top-level build file.
+//
+// Plugin versions are declared here once, using the modern `plugins {}` DSL
+// with `apply false` (meaning: make this version available, but don't apply
+// it to the root project itself). app/build.gradle's `plugins { id '...' }`
+// block then picks up these versions automatically — no separate
+// `buildscript { classpath ... }` block is needed (and mixing that older
+// style with settings.gradle's `pluginManagement` is what caused the
+// "Plugin not found" / "must include a version number" sync error).
+plugins {
+    id 'com.android.application' version '8.13.0' apply false
+    id 'org.jetbrains.kotlin.android' version '2.3.0' apply false
+}
+
+// NOTE: project-level repositories are intentionally NOT declared here.
+// settings.gradle already centralizes them via dependencyResolutionManagement
+// (repositoriesMode = FAIL_ON_PROJECT_REPOS); declaring an `allprojects {
+// repositories {...} }` block here as well would conflict with that setting.
+
+tasks.register('clean', Delete) {
+    delete rootProject.layout.buildDirectory
+}
